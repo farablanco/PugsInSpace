@@ -1,0 +1,156 @@
+<div class="container">
+    <div class="row">
+        <div class="col s4">
+            <h3 class="center-align">Solar Panels</h3>
+            <p class="center-align">Choose your panel</p>
+            <div class="solar-panel">
+                <div class="row">
+                    <div class="card" ng-click="ctrl.activateMono()">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="http://energyinformative.org/wp-content/uploads/2013/06/monocrystalline-solar-installation-e1372104826549.jpg">
+                        </div>
+                        <div class="card-content" ng-class="{'teal lighten-2': ctrl.activatedMono}">
+                            <span class="card-title activator grey-text text-darken-4">Monocrystalline solar panels<i class="material-icons right">more_vert</i></span>
+                            <p><a ng-click="ctrl.activateMono()">Click to choose</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Monocrystalline solar panels<i class="material-icons right">close</i></span>
+                            <p>This solar panel is mid-priced and has an efficiency of 18-20%.</p>
+                        </div>
+                    </div>
+
+                    <div class="card" ng-click="ctrl.activatePoly()">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="http://energyinformative.org/wp-content/uploads/2013/06/solar-panel-installation-e1372104921792.jpg">
+                        </div>
+                        <div class="card-content" ng-class="{'teal lighten-2': ctrl.activatedPoly}">
+                            <span class="card-title activator grey-text text-darken-4">Polycrystalline solar panel<i class="material-icons right">more_vert</i></span>
+                            <p><a ng-click="ctrl.activatePoly()">Click to choose</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Polycrystalline solar panel<i class="material-icons right">close</i></span>
+                            <p>This solar panel is expensive but has an efficiency of 22%.</p>
+                        </div>
+                    </div>
+
+                    <div class="card" ng-click="ctrl.activateThin()">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="http://energyinformative.org/wp-content/uploads/2013/06/thin-film-solar-panels-e1372104973762.jpg">
+                        </div>
+                        <div class="card-content" ng-class="{'teal lighten-2': ctrl.activatedThin}">
+                            <span class="card-title activator grey-text text-darken-4">Thin film solar panel<i class="material-icons right">more_vert</i></span>
+                            <p><a ng-click="ctrl.activateThin()">Click to choose</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Thin film solar panel<i class="material-icons right">close</i></span>
+                            <p>This solar panel is lowly-priced and has an efficiency of 10-15%.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col s8">
+            <div class="row">
+                <div class="col s12">
+                    <h3 class="center-align">
+                        Meteorological Data
+                    </h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s4">
+                    <div id="gauge" class="200x160px"></div>
+                </div>
+                <div class="col s4">
+                    <h4 class="center-align">
+                        Sunrise
+                    </h4>
+                    <h5 class="center-align">
+                        0{{ ctrl.sunrise[ctrl.currentIndex].sunrise }}
+                    </h5>
+                </div>
+                <div class="col s4">
+                    <h4 class="center-align">
+                        Sunset
+                    </h4>
+                    <h5 class="center-align">
+                        {{ ctrl.sunset[ctrl.currentIndex].sunset }}
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s10 offset-s2">
+                    <h5>For the Month: September</h5>
+                    <p>Slide to select date</p>
+
+                    <form action="#">
+                        <p class="range-field">
+                            <input type="range" id="date-range" ng-change="ctrl.updateIndex()" ng-model="ctrl.today.date" min="1" max="30" />
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <div class="col s12 map-container center-align">
+                        <div id="floating-panel">
+                            <input onclick="clearMarkers();" type=button value="Hide Markers">
+                            <input onclick="showMarkers();" type=button value="Show All Markers">
+                            <input onclick="deleteMarkers();" type=button value="Delete Markers">
+                        </div>
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <h3 class="center-align">Solar Panels Energy Output</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <div>
+                    <ul class="col s12">
+                        <li class="col s6">
+                            <h4>September</h4>
+                            <a class="waves-effect waves-light btn" onclick="monthlyEnergy(09)">Calculate</a>
+                            <span id="m9">0</span> W
+                        </li>
+                        <li class="col s6">
+                            <h4>October</h4>
+                            <a class="waves-effect waves-light btn" onclick="monthlyEnergy(10)">Calculate</a>
+                            <span id="m10">0</span> W
+                        </li>
+                        <li class="col s6">
+                            <h4>November</h4>
+                            <a class="waves-effect waves-light btn" onclick="monthlyEnergy(11)"></i>Calculate</a>
+                            <span id="m11">0</span> W
+                        </li>
+                        <li class="col s6">
+                            <h4>December</h4>
+                            <a class="waves-effect waves-light btn" onclick="monthlyEnergy(12)"></i>Calculate</a>
+                            <span id="m12">0</span> W
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-action-btn">
+        <a ui-sref="calc" class="btn-floating btn-large red">
+            <i class="large material-icons">fast_forward</i>
+        </a>
+    </div>
+
+
+    <script src="app/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzhvpqprw0YuSkIwAN2-2IAvDt6fJha6c&callback=initMap" async
+        defer></script>
