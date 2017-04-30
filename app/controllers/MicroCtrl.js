@@ -65,7 +65,7 @@
                 totalArrayExpenditure += vm.energyExpenditure[i].specificWatts;
                 if (totalArrayExpenditure > vm.maxWatts) {
                     vm.warningFalse = true;
-                    vm.warning = "YOUR EXPENDITURE HAS EXCEEDED OMGZ";
+                    vm.warning = "OMGZ!!! YOU'RE OVERSPENDING!";
                 } else {
                     vm.warningFalse = false;
                     vm.warning = "Your energy expenditure is doing fine!"
